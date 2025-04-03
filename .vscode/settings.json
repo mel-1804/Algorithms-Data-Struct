@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "\"*.svg\"": "\"xml\"",
+    "ostream": "cpp"
+  }
+}
