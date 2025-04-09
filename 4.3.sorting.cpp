@@ -27,13 +27,13 @@ void merge(vector<int> &v, int left, int mid, int right)
         }
         ++k;
     }
-    while (i <= mid) // Relleno aux con v[i] - Vector izqda
+    while (i <= mid) // Relleno aux con v[i] si es que me sobraron elementos en Vector izqda
     {
         aux[k] = v[i];
         ++k;
         ++i;
     }
-    while (j <= right) // Rellno aux con v[j] - Vector dcha
+    while (j <= right) // Rellno aux con v[j] si es que me sobraron elementos en Vector derecha
     {
         aux[k] = v[j];
         ++k;
@@ -46,7 +46,6 @@ void merge(vector<int> &v, int left, int mid, int right)
     }
 }
 
-// ACA EJECUTAMOS EL MERGE PROPIAMENTE TAL
 void merge_sort(vector<int> &v, int left, int right)
 { // Este procedimiento sólo ordena el vector
     if (left < right)
