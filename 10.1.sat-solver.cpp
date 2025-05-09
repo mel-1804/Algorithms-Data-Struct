@@ -39,7 +39,7 @@ void inicio()
     decs = 0;
     conflicts = 0;
 
-    positiveLiterals.resize(numVars + 1); //.resize() ajusta elñ tamaño del vector
+    positiveLiterals.resize(numVars + 1); //.resize() ajusta el tamaño del vector
     negativeLiterals.resize(numVars + 1);
     literalsOcurrence.resize(numVars + 1, 0.0); // sintaxis : .rezise("tamaño que asigno", "valor de los elementos")
 }
@@ -60,7 +60,7 @@ void updateLiteralsOcurrence(int clausula)
     }
 }
 // DECREMENTARÁ UNA PROPORCION DE OCURRENCIAS PARA TODOS LOS LITERALES DE MI FORMULA
-void itsTimeUpdateOcurrence()
+void itsTimeToUpdateOcurrence()
 {
     for (unsigned int i = 0; i < numVars; i++)
     {
@@ -75,7 +75,7 @@ void ocurrenceHeuristic(int indice)
 {
     if (conflicts % 1000 == 0)
     {
-        itsTimeUpdateOcurrence(); // Decremento las ocurrencias de todos los literales
+        itsTimeToUpdateOcurrence(); // Decremento las ocurrencias de todos los literales
     }
     updateLiteralsOcurrence(indice); // incremento ocurrencias de los literales en la fila indice.
 }
@@ -98,21 +98,24 @@ void readClauses()
     clauses.resize(numClauses);
 
     inicio(); // Inicializamos las variables llamando al procedimiento inicio()
+
     // Read clauses, matrix
-    for (int i = 0; i < numClauses; ++i)
+    for (unsigned int i = 0; i < numClauses; ++i)
     {
         int lit;
         while (cin >> lit and lit != 0)
+        {
             clauses[i].push_back(lit);
-        if (lit > 0)
-        {
-            positiveLiterals[lit].push_back(i); // añado la fila i al vector positiveLiterals[lit]
-            literalsOcurrence[lit] += 1.0;
-        }
-        else
-        {
-            negativeLiterals[-lit].push_back(i);
-            literalsOcurrence[-lit] += 1.0;
+            if (lit > 0)
+            {
+                positiveLiterals[lit].push_back(i); // añado la fila i al vector positiveLiterals[lit]
+                literalsOcurrence[lit] += 1.0;
+            }
+            else
+            {
+                negativeLiterals[-lit].push_back(i);
+                literalsOcurrence[-lit] += 1.0;
+            }
         }
     }
 }
